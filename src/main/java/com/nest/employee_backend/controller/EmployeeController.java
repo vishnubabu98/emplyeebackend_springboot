@@ -1,6 +1,7 @@
 package com.nest.employee_backend.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -10,17 +11,17 @@ public class EmployeeController {
     {
         return  "welcome to employee home page";
     }
-    @GetMapping("/add")
+    @PostMapping("/add")
     public String AddPage()
     {
         return  "welcome to employee add page";
     }
-    @GetMapping("/search")
+    @PostMapping("/search")
     public String SearchPage()
     {
         return  "welcome to employee search page";
     }
-    @GetMapping("/edit")
+    @PostMapping("/edit")
     public String EditPage()
     {
         return  "welcome to employee edit page";
@@ -30,7 +31,7 @@ public class EmployeeController {
     {
         return  "welcome to employee view page";
     }
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     public String DeletePage()
     {
         return  "welcome to employee delete page";
