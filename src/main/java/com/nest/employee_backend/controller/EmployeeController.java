@@ -8,14 +8,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.nest.employee_backend.model.Employees;
 
+import java.util.List;
+
 @RestController
 public class EmployeeController {
     @Autowired
     private EmployeeDao dao;
-    @GetMapping("/")
-    public String HomePage()
+    @GetMapping("/view")
+    public List<Employees> HomePage()
     {
-        return  "welcome to employee home page";
+        return(List<Employees>) dao.findAll();
     }
     @PostMapping(path="/add",consumes = "application/json",produces = "application/json")
     public String AddEmployee(@RequestBody Employees e)
