@@ -2,7 +2,9 @@ package com.nest.employee_backend.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import com.nest.employee_backend.model.Employees;
 
 @RestController
 public class EmployeeController {
@@ -11,29 +13,18 @@ public class EmployeeController {
     {
         return  "welcome to employee home page";
     }
-    @PostMapping("/add")
-    public String AddPage()
+    @PostMapping(path="/add",consumes = "application/json",produces = "application/json")
+    public String AddEmployee(@RequestBody Employees e)
     {
-        return  "welcome to employee add page";
+        System.out.println(e.getId());
+        System.out.println(e.getEmpcode());
+        System.out.println(e.getDesignation());
+        System.out.println(e.getSalary());
+        System.out.println(e.getCompanyName());
+        System.out.println(e.getMobno());
+        System.out.println(e.getUsername());
+        System.out.println(e.getPassword());
+        return  "employee added successfully";
     }
-    @PostMapping("/search")
-    public String SearchPage()
-    {
-        return  "welcome to employee search page";
-    }
-    @PostMapping("/edit")
-    public String EditPage()
-    {
-        return  "welcome to employee edit page";
-    }
-    @GetMapping("/viewall")
-    public String ViewPage()
-    {
-        return  "welcome to employee view page";
-    }
-    @PostMapping("/delete")
-    public String DeletePage()
-    {
-        return  "welcome to employee delete page";
-    }
+
 }
