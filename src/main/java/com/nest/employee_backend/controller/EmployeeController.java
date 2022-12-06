@@ -1,5 +1,7 @@
 package com.nest.employee_backend.controller;
 
+import com.nest.employee_backend.dao.EmployeeDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,6 +10,8 @@ import com.nest.employee_backend.model.Employees;
 
 @RestController
 public class EmployeeController {
+    @Autowired
+    private EmployeeDao dao;
     @GetMapping("/")
     public String HomePage()
     {
@@ -24,6 +28,7 @@ public class EmployeeController {
         System.out.println(e.getMobno());
         System.out.println(e.getUsername());
         System.out.println(e.getPassword());
+        dao.save(e);
         return  "employee added successfully";
     }
 
