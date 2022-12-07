@@ -2,10 +2,7 @@ package com.nest.employee_backend.controller;
 
 import com.nest.employee_backend.dao.EmployeeDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.nest.employee_backend.model.Employees;
 
 import java.util.List;
@@ -14,11 +11,13 @@ import java.util.List;
 public class EmployeeController {
     @Autowired
     private EmployeeDao dao;
+    @CrossOrigin(origins = "*")
     @GetMapping("/view")
     public List<Employees> HomePage()
     {
         return(List<Employees>) dao.findAll();
     }
+    @CrossOrigin(origins = "*")
     @PostMapping(path="/add",consumes = "application/json",produces = "application/json")
     public String AddEmployee(@RequestBody Employees e)
     {
