@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.nest.employee_backend.model.Employees;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -31,6 +32,25 @@ public class EmployeeController {
         System.out.println(e.getPassword());
         dao.save(e);
         return  "employee added successfully";
+    }
+    @CrossOrigin(origins = "*")
+    @PostMapping(path="/search",consumes = "application/json",produces = "application/json")
+    public List searchEmployee(@RequestBody Employees e){
+        String Empcode = String.valueOf(e.getEmpcode());
+        System.out.println(Empcode);
+        dao.searchEmployee(e.getEmpcode());
+        return(List<Employees>)dao.searchEmployee(e.getEmpcode());
+    }
+    @CrossOrigin(origins = "*")
+    @PostMapping(path="/delete",consumes = "application/json",produces = "application/json")
+    public HashMap<String,String> deleteEmployee(@RequestBody Employees e)
+    {
+        String empid = String.valueOf(e.getId());
+        System.out.println(empid);
+        dao.deleteEmployee(e.getId());
+        HashMap<String,String>map=new HashMap<>();
+        map.put("status","success");
+        return map;
     }
 
 }
